@@ -1,0 +1,1245 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9\par
+Setting environment for using XAMPP for Windows.\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-721368root-p\par
+'mysql-721368root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+#\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-u-root-p\par
+'mysql-u-root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql -u root -p\par
+Enter password:\par
+Welcome to the MariaDB monitor.  Commands end with ; or \\g.\par
+Your MariaDB connection id is 2\par
+Server version: 10.1.21-MariaDB mariadb.org binary distribution\par
+\par
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.\par
+\par
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.01 sec)\par
+\par
+MariaDB [(none)]> show databases\par
+    -> ;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> create database csd2204w18;\par
+Query OK, 1 row affected (0.00 sec)\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| csd2204w18         |\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> use csd2204w18;\par
+Database changed\par
+MariaDB [csd2204w18]> show tables;\par
+Empty set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2)\par
+    -> name varchar(40)\par
+    -> nickname varchar(10)\par
+    -> address varchar(50)\par
+    -> city varchar(30)\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name varchar(40)\par
+nickname varchar(10)\par
+address varchar(50)\par
+city varchar(30)\par
+posta' at line 3\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6),\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]>\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> );\par
+Query OK, 0 rows affected (0.55 sec)\par
+\par
+MariaDB [csd2204w18]> desc tablename\par
+    -> show create table\par
+    -> show create table c1;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show create table\par
+show create table c1' at line 2\par
+MariaDB [csd2204w18]> show create table customer;\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> describe c1;\par
++------------+-------------+------+-----+---------+-------+\par
+| Field      | Type        | Null | Key | Default | Extra |\par
++------------+-------------+------+-----+---------+-------+\par
+| customerid | int(2)      | YES  |     | NULL    |       |\par
+| name       | varchar(40) | YES  |     | NULL    |       |\par
+| nickname   | varchar(10) | YES  |     | NULL    |       |\par
+| address    | varchar(50) | YES  |     | NULL    |       |\par
+| city       | varchar(30) | YES  |     | NULL    |       |\par
+| postalcode | int(6)      | YES  |     | NULL    |       |\par
++------------+-------------+------+-----+---------+-------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> show create table c1;\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| Table | Create Table                                                                                                                                                                                                                                                                         |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| c1    | CREATE TABLE `c1` (\par
+  `customerid` int(2) DEFAULT NULL,\par
+  `name` varchar(40) DEFAULT NULL,\par
+  `nickname` varchar(10) DEFAULT NULL,\par
+  `address` varchar(50) DEFAULT NULL,\par
+  `city` varchar(30) DEFAULT NULL,\par
+  `postalcode` int(6) DEFAULT NULL\par
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(1,'gagan','deep''north york','toronto',123456);\par
+ERROR 1136 (21S01): Column count doesn't match value count at row 1\par
+MariaDB [csd2204w18]> insert into c1 values(2,'gagan','deep','north york','toronto',123456);\par
+Query OK, 1 row affected (0.05 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(3,'raman','deep','abcd','brampton',234567);\par
+Query OK, 1 row affected (0.28 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(4,'kamal','deep','efgh','south',2345678);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(5,'preet','deep','hikl','north',456789);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(6,'ram','deep','lmnop','east',789654);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(7,'gun','deep','kjhgf','west',567843);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(8,'amrit','veer','kjhgb','delhi',345678);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(9,'daman','deep','detyui','scarbrough',6754328);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(10,'par','deep','fghjkl','toronto',78654332);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> select * from c1;\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          8 | amrit | veer     | kjhgb      | delhi      |     345678 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+9 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='delhi';\par
++------------+-------+----------+---------+-------+------------+\par
+| customerid | name  | nickname | address | city  | postalcode |\par
++------------+-------+----------+---------+-------+------------+\par
+|          8 | amrit | veer     | kjhgb   | delhi |     345678 |\par
++------------+-------+----------+---------+-------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select * from customer WHERE name='daman';\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> select *from c1 WHERE name='daman';\par
++------------+-------+----------+---------+------------+------------+\par
+| customerid | name  | nickname | address | city       | postalcode |\par
++------------+-------+----------+---------+------------+------------+\par
+|          9 | daman | deep     | detyui  | scarbrough |    6754328 |\par
++------------+-------+----------+---------+------------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from customer WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select*from c1 WHERE city='toronto'or city='west';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
+|         10 | par   | deep     | fghjkl     | toronto |   78654332 |\par
++------------+-------+----------+------------+---------+------------+\par
+3 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid=2;\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
++------------+-------+----------+------------+---------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 2 and 7;\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east     |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west     |     567843 |\par
++------------+-------+----------+------------+----------+------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 7 and 2;\par
+Empty set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname='deep';\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where name like 'g%';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
++------------+-------+----------+------------+---------+------------+\par
+2 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'w%';\par
++------------+------+----------+---------+------+------------+\par
+| customerid | name | nickname | address | city | postalcode |\par
++------------+------+----------+---------+------+------------+\par
+|          7 | gun  | deep     | kjhgf   | west |     567843 |\par
++------------+------+----------+---------+------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'b%' and 's%';\par
+Empty set, 4 warnings (0.02 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where customerid in (2,3,4,5);\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
++------------+-------+----------+------------+----------+------------+\par
+4 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname in('deep','deep');\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]>\par
+Setting environment for using XAMPP for Windows.\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-721368root-p\par
+'mysql-721368root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+#\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-u-root-p\par
+'mysql-u-root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql -u root -p\par
+Enter password:\par
+Welcome to the MariaDB monitor.  Commands end with ; or \\g.\par
+Your MariaDB connection id is 2\par
+Server version: 10.1.21-MariaDB mariadb.org binary distribution\par
+\par
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.\par
+\par
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.01 sec)\par
+\par
+MariaDB [(none)]> show databases\par
+    -> ;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> create database csd2204w18;\par
+Query OK, 1 row affected (0.00 sec)\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| csd2204w18         |\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> use csd2204w18;\par
+Database changed\par
+MariaDB [csd2204w18]> show tables;\par
+Empty set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2)\par
+    -> name varchar(40)\par
+    -> nickname varchar(10)\par
+    -> address varchar(50)\par
+    -> city varchar(30)\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name varchar(40)\par
+nickname varchar(10)\par
+address varchar(50)\par
+city varchar(30)\par
+posta' at line 3\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6),\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]>\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> );\par
+Query OK, 0 rows affected (0.55 sec)\par
+\par
+MariaDB [csd2204w18]> desc tablename\par
+    -> show create table\par
+    -> show create table c1;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show create table\par
+show create table c1' at line 2\par
+MariaDB [csd2204w18]> show create table customer;\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> describe c1;\par
++------------+-------------+------+-----+---------+-------+\par
+| Field      | Type        | Null | Key | Default | Extra |\par
++------------+-------------+------+-----+---------+-------+\par
+| customerid | int(2)      | YES  |     | NULL    |       |\par
+| name       | varchar(40) | YES  |     | NULL    |       |\par
+| nickname   | varchar(10) | YES  |     | NULL    |       |\par
+| address    | varchar(50) | YES  |     | NULL    |       |\par
+| city       | varchar(30) | YES  |     | NULL    |       |\par
+| postalcode | int(6)      | YES  |     | NULL    |       |\par
++------------+-------------+------+-----+---------+-------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> show create table c1;\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| Table | Create Table                                                                                                                                                                                                                                                                         |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| c1    | CREATE TABLE `c1` (\par
+  `customerid` int(2) DEFAULT NULL,\par
+  `name` varchar(40) DEFAULT NULL,\par
+  `nickname` varchar(10) DEFAULT NULL,\par
+  `address` varchar(50) DEFAULT NULL,\par
+  `city` varchar(30) DEFAULT NULL,\par
+  `postalcode` int(6) DEFAULT NULL\par
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(1,'gagan','deep''north york','toronto',123456);\par
+ERROR 1136 (21S01): Column count doesn't match value count at row 1\par
+MariaDB [csd2204w18]> insert into c1 values(2,'gagan','deep','north york','toronto',123456);\par
+Query OK, 1 row affected (0.05 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(3,'raman','deep','abcd','brampton',234567);\par
+Query OK, 1 row affected (0.28 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(4,'kamal','deep','efgh','south',2345678);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(5,'preet','deep','hikl','north',456789);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(6,'ram','deep','lmnop','east',789654);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(7,'gun','deep','kjhgf','west',567843);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(8,'amrit','veer','kjhgb','delhi',345678);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(9,'daman','deep','detyui','scarbrough',6754328);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(10,'par','deep','fghjkl','toronto',78654332);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> select * from c1;\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          8 | amrit | veer     | kjhgb      | delhi      |     345678 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+9 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='delhi';\par
++------------+-------+----------+---------+-------+------------+\par
+| customerid | name  | nickname | address | city  | postalcode |\par
++------------+-------+----------+---------+-------+------------+\par
+|          8 | amrit | veer     | kjhgb   | delhi |     345678 |\par
++------------+-------+----------+---------+-------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select * from customer WHERE name='daman';\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> select *from c1 WHERE name='daman';\par
++------------+-------+----------+---------+------------+------------+\par
+| customerid | name  | nickname | address | city       | postalcode |\par
++------------+-------+----------+---------+------------+------------+\par
+|          9 | daman | deep     | detyui  | scarbrough |    6754328 |\par
++------------+-------+----------+---------+------------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from customer WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select*from c1 WHERE city='toronto'or city='west';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
+|         10 | par   | deep     | fghjkl     | toronto |   78654332 |\par
++------------+-------+----------+------------+---------+------------+\par
+3 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid=2;\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
++------------+-------+----------+------------+---------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 2 and 7;\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east     |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west     |     567843 |\par
++------------+-------+----------+------------+----------+------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 7 and 2;\par
+Empty set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname='deep';\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where name like 'g%';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
++------------+-------+----------+------------+---------+------------+\par
+2 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'w%';\par
++------------+------+----------+---------+------+------------+\par
+| customerid | name | nickname | address | city | postalcode |\par
++------------+------+----------+---------+------+------------+\par
+|          7 | gun  | deep     | kjhgf   | west |     567843 |\par
++------------+------+----------+---------+------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'b%' and 's%';\par
+Empty set, 4 warnings (0.02 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where customerid in (2,3,4,5);\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
++------------+-------+----------+------------+----------+------------+\par
+4 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname in('deep','deep');\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]>\par
+Setting environment for using XAMPP for Windows.\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-721368root-p\par
+'mysql-721368root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+#\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-u-root-p\par
+'mysql-u-root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql -u root -p\par
+Enter password:\par
+Welcome to the MariaDB monitor.  Commands end with ; or \\g.\par
+Your MariaDB connection id is 2\par
+Server version: 10.1.21-MariaDB mariadb.org binary distribution\par
+\par
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.\par
+\par
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.01 sec)\par
+\par
+MariaDB [(none)]> show databases\par
+    -> ;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> create database csd2204w18;\par
+Query OK, 1 row affected (0.00 sec)\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| csd2204w18         |\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> use csd2204w18;\par
+Database changed\par
+MariaDB [csd2204w18]> show tables;\par
+Empty set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2)\par
+    -> name varchar(40)\par
+    -> nickname varchar(10)\par
+    -> address varchar(50)\par
+    -> city varchar(30)\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name varchar(40)\par
+nickname varchar(10)\par
+address varchar(50)\par
+city varchar(30)\par
+posta' at line 3\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6),\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]>\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> );\par
+Query OK, 0 rows affected (0.55 sec)\par
+\par
+MariaDB [csd2204w18]> desc tablename\par
+    -> show create table\par
+    -> show create table c1;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show create table\par
+show create table c1' at line 2\par
+MariaDB [csd2204w18]> show create table customer;\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> describe c1;\par
++------------+-------------+------+-----+---------+-------+\par
+| Field      | Type        | Null | Key | Default | Extra |\par
++------------+-------------+------+-----+---------+-------+\par
+| customerid | int(2)      | YES  |     | NULL    |       |\par
+| name       | varchar(40) | YES  |     | NULL    |       |\par
+| nickname   | varchar(10) | YES  |     | NULL    |       |\par
+| address    | varchar(50) | YES  |     | NULL    |       |\par
+| city       | varchar(30) | YES  |     | NULL    |       |\par
+| postalcode | int(6)      | YES  |     | NULL    |       |\par
++------------+-------------+------+-----+---------+-------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> show create table c1;\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| Table | Create Table                                                                                                                                                                                                                                                                         |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| c1    | CREATE TABLE `c1` (\par
+  `customerid` int(2) DEFAULT NULL,\par
+  `name` varchar(40) DEFAULT NULL,\par
+  `nickname` varchar(10) DEFAULT NULL,\par
+  `address` varchar(50) DEFAULT NULL,\par
+  `city` varchar(30) DEFAULT NULL,\par
+  `postalcode` int(6) DEFAULT NULL\par
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(1,'gagan','deep''north york','toronto',123456);\par
+ERROR 1136 (21S01): Column count doesn't match value count at row 1\par
+MariaDB [csd2204w18]> insert into c1 values(2,'gagan','deep','north york','toronto',123456);\par
+Query OK, 1 row affected (0.05 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(3,'raman','deep','abcd','brampton',234567);\par
+Query OK, 1 row affected (0.28 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(4,'kamal','deep','efgh','south',2345678);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(5,'preet','deep','hikl','north',456789);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(6,'ram','deep','lmnop','east',789654);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(7,'gun','deep','kjhgf','west',567843);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(8,'amrit','veer','kjhgb','delhi',345678);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(9,'daman','deep','detyui','scarbrough',6754328);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(10,'par','deep','fghjkl','toronto',78654332);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> select * from c1;\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          8 | amrit | veer     | kjhgb      | delhi      |     345678 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+9 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='delhi';\par
++------------+-------+----------+---------+-------+------------+\par
+| customerid | name  | nickname | address | city  | postalcode |\par
++------------+-------+----------+---------+-------+------------+\par
+|          8 | amrit | veer     | kjhgb   | delhi |     345678 |\par
++------------+-------+----------+---------+-------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select * from customer WHERE name='daman';\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> select *from c1 WHERE name='daman';\par
++------------+-------+----------+---------+------------+------------+\par
+| customerid | name  | nickname | address | city       | postalcode |\par
++------------+-------+----------+---------+------------+------------+\par
+|          9 | daman | deep     | detyui  | scarbrough |    6754328 |\par
++------------+-------+----------+---------+------------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from customer WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select*from c1 WHERE city='toronto'or city='west';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
+|         10 | par   | deep     | fghjkl     | toronto |   78654332 |\par
++------------+-------+----------+------------+---------+------------+\par
+3 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid=2;\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
++------------+-------+----------+------------+---------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 2 and 7;\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east     |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west     |     567843 |\par
++------------+-------+----------+------------+----------+------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 7 and 2;\par
+Empty set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname='deep';\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where name like 'g%';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
++------------+-------+----------+------------+---------+------------+\par
+2 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'w%';\par
++------------+------+----------+---------+------+------------+\par
+| customerid | name | nickname | address | city | postalcode |\par
++------------+------+----------+---------+------+------------+\par
+|          7 | gun  | deep     | kjhgf   | west |     567843 |\par
++------------+------+----------+---------+------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'b%' and 's%';\par
+Empty set, 4 warnings (0.02 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where customerid in (2,3,4,5);\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
++------------+-------+----------+------------+----------+------------+\par
+4 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname in('deep','deep');\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]>\par
+Setting environment for using XAMPP for Windows.\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-721368root-p\par
+'mysql-721368root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+#\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql-u-root-p\par
+'mysql-u-root-p' is not recognized as an internal or external command,\par
+operable program or batch file.\par
+\par
+721368@128-IMAC10 c:\\xampp\par
+# mysql -u root -p\par
+Enter password:\par
+Welcome to the MariaDB monitor.  Commands end with ; or \\g.\par
+Your MariaDB connection id is 2\par
+Server version: 10.1.21-MariaDB mariadb.org binary distribution\par
+\par
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.\par
+\par
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.01 sec)\par
+\par
+MariaDB [(none)]> show databases\par
+    -> ;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> create database csd2204w18;\par
+Query OK, 1 row affected (0.00 sec)\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| csd2204w18         |\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> use csd2204w18;\par
+Database changed\par
+MariaDB [csd2204w18]> show tables;\par
+Empty set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2)\par
+    -> name varchar(40)\par
+    -> nickname varchar(10)\par
+    -> address varchar(50)\par
+    -> city varchar(30)\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name varchar(40)\par
+nickname varchar(10)\par
+address varchar(50)\par
+city varchar(30)\par
+posta' at line 3\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6),\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> ;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7\par
+MariaDB [csd2204w18]>\par
+MariaDB [csd2204w18]> create table c1(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> );\par
+Query OK, 0 rows affected (0.55 sec)\par
+\par
+MariaDB [csd2204w18]> desc tablename\par
+    -> show create table\par
+    -> show create table c1;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show create table\par
+show create table c1' at line 2\par
+MariaDB [csd2204w18]> show create table customer;\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> describe c1;\par
++------------+-------------+------+-----+---------+-------+\par
+| Field      | Type        | Null | Key | Default | Extra |\par
++------------+-------------+------+-----+---------+-------+\par
+| customerid | int(2)      | YES  |     | NULL    |       |\par
+| name       | varchar(40) | YES  |     | NULL    |       |\par
+| nickname   | varchar(10) | YES  |     | NULL    |       |\par
+| address    | varchar(50) | YES  |     | NULL    |       |\par
+| city       | varchar(30) | YES  |     | NULL    |       |\par
+| postalcode | int(6)      | YES  |     | NULL    |       |\par
++------------+-------------+------+-----+---------+-------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> show create table c1;\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| Table | Create Table                                                                                                                                                                                                                                                                         |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| c1    | CREATE TABLE `c1` (\par
+  `customerid` int(2) DEFAULT NULL,\par
+  `name` varchar(40) DEFAULT NULL,\par
+  `nickname` varchar(10) DEFAULT NULL,\par
+  `address` varchar(50) DEFAULT NULL,\par
+  `city` varchar(30) DEFAULT NULL,\par
+  `postalcode` int(6) DEFAULT NULL\par
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |\par
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(1,'gagan','deep''north york','toronto',123456);\par
+ERROR 1136 (21S01): Column count doesn't match value count at row 1\par
+MariaDB [csd2204w18]> insert into c1 values(2,'gagan','deep','north york','toronto',123456);\par
+Query OK, 1 row affected (0.05 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(3,'raman','deep','abcd','brampton',234567);\par
+Query OK, 1 row affected (0.28 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(4,'kamal','deep','efgh','south',2345678);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(5,'preet','deep','hikl','north',456789);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(6,'ram','deep','lmnop','east',789654);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(7,'gun','deep','kjhgf','west',567843);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(8,'amrit','veer','kjhgb','delhi',345678);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(9,'daman','deep','detyui','scarbrough',6754328);\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204w18]> insert into c1 values(10,'par','deep','fghjkl','toronto',78654332);\par
+Query OK, 1 row affected (0.08 sec)\par
+\par
+MariaDB [csd2204w18]> select * from c1;\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          8 | amrit | veer     | kjhgb      | delhi      |     345678 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+9 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='delhi';\par
++------------+-------+----------+---------+-------+------------+\par
+| customerid | name  | nickname | address | city  | postalcode |\par
++------------+-------+----------+---------+-------+------------+\par
+|          8 | amrit | veer     | kjhgb   | delhi |     345678 |\par
++------------+-------+----------+---------+-------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select * from customer WHERE name='daman';\par
+ERROR 1146 (42S02): Table 'csd2204w18.customer' doesn't exist\par
+MariaDB [csd2204w18]> select *from c1 WHERE name='daman';\par
++------------+-------+----------+---------+------------+------------+\par
+| customerid | name  | nickname | address | city       | postalcode |\par
++------------+-------+----------+---------+------------+------------+\par
+|          9 | daman | deep     | detyui  | scarbrough |    6754328 |\par
++------------+-------+----------+---------+------------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from customer WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select *from c1 WHERE city='toronto'or city='west');\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1\par
+MariaDB [csd2204w18]> select*from c1 WHERE city='toronto'or city='west';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
+|         10 | par   | deep     | fghjkl     | toronto |   78654332 |\par
++------------+-------+----------+------------+---------+------------+\par
+3 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid=2;\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
++------------+-------+----------+------------+---------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 2 and 7;\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east     |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west     |     567843 |\par
++------------+-------+----------+------------+----------+------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 WHERE customerid between 7 and 2;\par
+Empty set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname='deep';\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where name like 'g%';\par
++------------+-------+----------+------------+---------+------------+\par
+| customerid | name  | nickname | address    | city    | postalcode |\par
++------------+-------+----------+------------+---------+------------+\par
+|          2 | gagan | deep     | north york | toronto |     123456 |\par
+|          7 | gun   | deep     | kjhgf      | west    |     567843 |\par
++------------+-------+----------+------------+---------+------------+\par
+2 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'w%';\par
++------------+------+----------+---------+------+------------+\par
+| customerid | name | nickname | address | city | postalcode |\par
++------------+------+----------+---------+------+------------+\par
+|          7 | gun  | deep     | kjhgf   | west |     567843 |\par
++------------+------+----------+---------+------+------------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where city like 'b%' and 's%';\par
+Empty set, 4 warnings (0.02 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where customerid in (2,3,4,5);\par
++------------+-------+----------+------------+----------+------------+\par
+| customerid | name  | nickname | address    | city     | postalcode |\par
++------------+-------+----------+------------+----------+------------+\par
+|          2 | gagan | deep     | north york | toronto  |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton |     234567 |\par
+|          4 | kamal | deep     | efgh       | south    |    2345678 |\par
+|          5 | preet | deep     | hikl       | north    |     456789 |\par
++------------+-------+----------+------------+----------+------------+\par
+4 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204w18]> select *from c1 where nickname in('deep','deep');\par
++------------+-------+----------+------------+------------+------------+\par
+| customerid | name  | nickname | address    | city       | postalcode |\par
++------------+-------+----------+------------+------------+------------+\par
+|          2 | gagan | deep     | north york | toronto    |     123456 |\par
+|          3 | raman | deep     | abcd       | brampton   |     234567 |\par
+|          4 | kamal | deep     | efgh       | south      |    2345678 |\par
+|          5 | preet | deep     | hikl       | north      |     456789 |\par
+|          6 | ram   | deep     | lmnop      | east       |     789654 |\par
+|          7 | gun   | deep     | kjhgf      | west       |     567843 |\par
+|          9 | daman | deep     | detyui     | scarbrough |    6754328 |\par
+|         10 | par   | deep     | fghjkl     | toronto    |   78654332 |\par
++------------+-------+----------+------------+------------+------------+\par
+8 rows in set (0.01 sec)\par
+\par
+MariaDB [csd2204w18]>\par
+}
+ 
