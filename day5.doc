@@ -1,0 +1,550 @@
+
+Setting environment for using XAMPP for Windows.
+721368@128-IMAC20 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 2
+Server version: 10.1.21-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database csd2204w18;
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [(none)]> use csd2204w18
+Database changed
+MariaDB [csd2204w18]> create table CityMaster (
+    -> CityID integer(4) primary key,
+    -> cityName varchar(255) default 'toronto’
+    -> );
+Query OK, 0 rows affected (0.52 sec)
+
+MariaDB [csd2204w18]> create table persons(
+    -> ID integer(3),
+    -> LasteName varchar(255) NOT NULL,
+    -> FirstName Varchar(255),
+    -> Age integer(3),
+    -> CityID integer(4),
+    -> constraint pk_persons primary key (ID),
+    -> constraint ck_persons check (age>=18),
+    -> constraint fk_persons foreign key (CityID)
+    -> references CityMaster (CityID)
+    -> );
+Query OK, 0 rows affected (0.69 sec)
+
+MariaDB [csd2204w18]> Show index from customers;
+ERROR 1146 (42S02): Table 'csd2204w18.customers' doesn't exist
+MariaDB [csd2204w18]> show index from persons;
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| persons |          0 | PRIMARY    |            1 | ID          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
+| persons |          1 | fk_persons |            1 | CityID      | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> CREATE TABLE new_table_name AS
+    -> create table customers(
+    -> customerid int(2),
+    -> name varchar(40),
+    -> nickname varchar(10),
+    -> address varchar(50),
+    -> city varchar(30)'
+    '> postal code int(6)
+    '> );
+    '>  ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'create table customers(
+customerid int(2),
+name varchar(40),
+nickname varchar(10' at line 2
+MariaDB [csd2204w18]> create table customers(
+    -> customerid int(2),
+    -> name varchar(40),
+    -> nickname varchar(10),
+    -> address varchar(50),
+    -> city varchar(30),
+    -> postalcode int(6)
+    -> );
+Query OK, 0 rows affected (0.26 sec)
+
+MariaDB [csd2204w18]> create table c1 as select * from customer
+    -> create table c1 as select * from customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'create table c1 as select * from customer' at line 2
+MariaDB [csd2204w18]> create table c1 as select * from customers;
+Query OK, 0 rows affected (0.58 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> create table customer as select * from person;
+ERROR 1146 (42S02): Table 'csd2204w18.person' doesn't exist
+MariaDB [csd2204w18]> create table customer as select * from persons;
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> create table c2 like persons;
+Query OK, 0 rows affected (0.30 sec)
+
+MariaDB [csd2204w18]> create table cust as select * from customers;
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> create table c like customers;
+Query OK, 0 rows affected (0.28 sec)
+
+MariaDB [csd2204w18]> insert into c select * from cust where customerid>5;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> select *from c1;
+Empty set (0.00 sec)
+
+MariaDB [csd2204w18]> select *from customers;
+Empty set (0.00 sec)
+
+MariaDB [csd2204w18]>
+MariaDB [csd2204w18]> INSERT INTO `c1` VALUES (2,'gagan','deep','north york','toronto',123456),(3,'raman','deep','abcd','brampton',234567),(4,'kamal','deep');
+ERROR 1136 (21S01): Column count doesn't match value count at row 3
+MariaDB [csd2204w18]> desc customers;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | YES  |     | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(50) | YES  |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> insert into customers values (
+    -> 1
+    -> 'gagan'
+    -> 'deep'
+    -> 'west'
+    -> 'toronto'
+    -> 123456
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''gagan'
+'deep'
+'west'
+'toronto'
+123456' at line 3
+MariaDB [csd2204w18]> insert into customers values(1,'gagan','deep','toronto',123456);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [csd2204w18]> insert into customers values(1,'gagan','deep','west','toronto',123456);
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [csd2204w18]> insert into customers values(2,'kiran','deep','east','toronto',479456);
+Query OK, 1 row affected (0.08 sec)
+
+MariaDB [csd2204w18]> insert into customers values(3,'amandeep','aman','banting','brampton',847239);
+Query OK, 1 row affected (0.14 sec)
+
+MariaDB [csd2204w18]> insert into customers values(4,'simran','simu','tomken','missisauga',367298);
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [csd2204w18]> desc c;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | YES  |     | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(50) | YES  |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> select * from c;
+Empty set (0.00 sec)
+
+MariaDB [csd2204w18]> desc customer;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| ID        | int(3)       | NO   |     | NULL    |       |
+| LasteName | varchar(255) | NO   |     | NULL    |       |
+| FirstName | varchar(255) | YES  |     | NULL    |       |
+| Age       | int(3)       | YES  |     | NULL    |       |
+| CityID    | int(4)       | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> select * from customers;
++------------+----------+----------+---------+------------+------------+
+| customerid | name     | nickname | address | city       | postalcode |
++------------+----------+----------+---------+------------+------------+
+|          1 | gagan    | deep     | west    | toronto    |     123456 |
+|          2 | kiran    | deep     | east    | toronto    |     479456 |
+|          3 | amandeep | aman     | banting | brampton   |     847239 |
+|          4 | simran   | simu     | tomken  | missisauga |     367298 |
++------------+----------+----------+---------+------------+------------+
+4 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> create table c1 as select * from customers;
+ERROR 1050 (42S01): Table 'c1' already exists
+MariaDB [csd2204w18]> create table cust1 as select * from customers;
+Query OK, 4 rows affected (0.45 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> desc cust1;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | YES  |     | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(50) | YES  |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> desc customers;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | YES  |     | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(50) | YES  |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+MariaDB [csd2204w18]> select * from cust1;
++------------+----------+----------+---------+------------+------------+
+| customerid | name     | nickname | address | city       | postalcode |
++------------+----------+----------+---------+------------+------------+
+|          1 | gagan    | deep     | west    | toronto    |     123456 |
+|          2 | kiran    | deep     | east    | toronto    |     479456 |
+|          3 | amandeep | aman     | banting | brampton   |     847239 |
+|          4 | simran   | simu     | tomken  | missisauga |     367298 |
++------------+----------+----------+---------+------------+------------+
+4 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> create cust2 like customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'cust2 like customers' at line 1
+MariaDB [csd2204w18]> create table cust2 like customers;
+Query OK, 0 rows affected (0.25 sec)
+
+MariaDB [csd2204w18]> desc cust2;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | YES  |     | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(50) | YES  |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> select * from cust2;
+Empty set (0.00 sec)
+
+MariaDB [csd2204w18]> insert into cust2 select * from customers where name='gagan';
+Query OK, 1 row affected (0.08 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> select * from cust2;
++------------+-------+----------+---------+---------+------------+
+| customerid | name  | nickname | address | city    | postalcode |
++------------+-------+----------+---------+---------+------------+
+|          1 | gagan | deep     | west    | toronto |     123456 |
++------------+-------+----------+---------+---------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> insert into cust2 select * from customers where name='kiran';
+Query OK, 1 row affected (0.06 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> select * from cust2;
++------------+-------+----------+---------+---------+------------+
+| customerid | name  | nickname | address | city    | postalcode |
++------------+-------+----------+---------+---------+------------+
+|          1 | gagan | deep     | west    | toronto |     123456 |
+|          2 | kiran | deep     | east    | toronto |     479456 |
++------------+-------+----------+---------+---------+------------+
+2 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> insert into cust2 select * from customers where address like 'b%';
+Query OK, 1 row affected (0.08 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> select * from cust2;
++------------+----------+----------+---------+----------+------------+
+| customerid | name     | nickname | address | city     | postalcode |
++------------+----------+----------+---------+----------+------------+
+|          1 | gagan    | deep     | west    | toronto  |     123456 |
+|          2 | kiran    | deep     | east    | toronto  |     479456 |
+|          3 | amandeep | aman     | banting | brampton |     847239 |
++------------+----------+----------+---------+----------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> select * from cust2 group by name;
++------------+----------+----------+---------+----------+------------+
+| customerid | name     | nickname | address | city     | postalcode |
++------------+----------+----------+---------+----------+------------+
+|          3 | amandeep | aman     | banting | brampton |     847239 |
+|          1 | gagan    | deep     | west    | toronto  |     123456 |
+|          2 | kiran    | deep     | east    | toronto  |     479456 |
++------------+----------+----------+---------+----------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> show index from persons;
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| persons |          0 | PRIMARY    |            1 | ID          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
+| persons |          1 | fk_persons |            1 | CityID      | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
++---------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> create table citymaster(
+    -> cityid int(4)'
+    '> cityname varchar(25) 'toronto'
+    '> );
+    '> ;
+    '>  ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''
+cityname varchar(25) 'toronto'
+);
+;
+ '' at line 2
+MariaDB [csd2204w18]> insert into citymaster values(2345,'toronto');
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [csd2204w18]> select *from citymaster;
++--------+----------+
+| CityID | cityName |
++--------+----------+
+|   2345 | toronto  |
++--------+----------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> insert into persons values(1,'kaur','gagan',23,234);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`csd2204w18`.`persons`, CONSTRAINT `fk_persons` FOREIGN KEY (`CityID`) REFERENCES `citymaster` (`CityID`))
+MariaDB [csd2204w18]> select version();
++-----------------+
+| version()       |
++-----------------+
+| 10.1.21-MariaDB |
++-----------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> select database();
++------------+
+| database() |
++------------+
+| csd2204w18 |
++------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> alter table citymaster add column country varchar(100);
+Query OK, 0 rows affected (0.75 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> select *from citymaster;
++--------+----------+---------+
+| CityID | cityName | country |
++--------+----------+---------+
+|   2345 | toronto  | NULL    |
++--------+----------+---------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> alter table cust modify column country varchar(20);
+ERROR 1054 (42S22): Unknown column 'country' in 'cust'
+MariaDB [csd2204w18]> alter table <city master> column country varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '<city master> column country varchar(20)' at line 1
+MariaDB [csd2204w18]> alter table citymaster modify column country varchar(20);
+Query OK, 1 row affected (1.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> select *from citymaster;
++--------+----------+---------+
+| CityID | cityName | country |
++--------+----------+---------+
+|   2345 | toronto  | NULL    |
++--------+----------+---------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> alter table citymaster change column postalcode zipcode varchar(6);
+ERROR 1054 (42S22): Unknown column 'postalcode' in 'citymaster'
+MariaDB [csd2204w18]> alter table citymaster change column country postalcode zipcode varchar(6);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'zipcode varchar(6)' at line 1
+MariaDB [csd2204w18]> alter table citymaster change column country  zipcode varchar(6);
+Query OK, 1 row affected (4.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> selsct *from citymaster;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'selsct *from citymaster' at line 1
+MariaDB [csd2204w18]> select * from citymaster;
++--------+----------+---------+
+| CityID | cityName | zipcode |
++--------+----------+---------+
+|   2345 | toronto  | NULL    |
++--------+----------+---------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> alter table citymaster drop column country;
+ERROR 1091 (42000): Can't DROP 'country'; check that column/key exists
+MariaDB [csd2204w18]> alter table citymaster drop column zipcode;
+Query OK, 0 rows affected (1.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> select * from citymaster;
++--------+----------+
+| CityID | cityName |
++--------+----------+
+|   2345 | toronto  |
++--------+----------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> alter table citymastetr add primary key (customerid);
+ERROR 1146 (42S02): Table 'csd2204w18.citymastetr' doesn't exist
+MariaDB [csd2204w18]> create table cities as select * from customers;
+Query OK, 4 rows affected (0.69 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> des cities;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'des cities' at line 1
+MariaDB [csd2204w18]> desc cities;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | YES  |     | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(50) | YES  |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+MariaDB [csd2204w18]> alter table cities modify name varchar(40);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> alter table cities drop index cityname;
+ERROR 1091 (42000): Can't DROP 'cityname'; check that column/key exists
+MariaDB [csd2204w18]> alter table cities drop index cityid;
+ERROR 1091 (42000): Can't DROP 'cityid'; check that column/key exists
+MariaDB [csd2204w18]> alter table cities drop index name;
+ERROR 1091 (42000): Can't DROP 'name'; check that column/key exists
+MariaDB [csd2204w18]> alter table cities drop index city;
+ERROR 1091 (42000): Can't DROP 'city'; check that column/key exists
+MariaDB [csd2204w18]> alter table cities drop index postalcode;
+ERROR 1091 (42000): Can't DROP 'postalcode'; check that column/key exists
+MariaDB [csd2204w18]> alter table cities drop index postalcode;
+ERROR 1091 (42000): Can't DROP 'postalcode'; check that column/key exists
+MariaDB [csd2204w18]> alter table cities add primary key
+    ->  ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [csd2204w18]> alter table cities add primary key(customerid);
+Query OK, 4 rows affected (2.40 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> alter table cities add constraint unique(country);
+ERROR 1072 (42000): Key column 'country' doesn't exist in table
+MariaDB [csd2204w18]> alter table cities add constraint unique (country);
+ERROR 1072 (42000): Key column 'country' doesn't exist in table
+MariaDB [csd2204w18]> alter table cities add constraint unique (name);
+Query OK, 0 rows affected (0.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> alter table cities modify address varchar(40) not null;
+Query OK, 4 rows affected (3.47 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> desc cities;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | NO   | PRI | NULL    |       |
+| name       | varchar(40) | YES  | UNI | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(40) | NO   |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+MariaDB [csd2204w18]> alter table cities drop index name;
+Query OK, 0 rows affected (0.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [csd2204w18]> desc cities;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | NO   | PRI | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(40) | NO   |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.05 sec)
+
+MariaDB [csd2204w18]> alter table citymaster drop primary key;
+ERROR 1025 (HY000): Error on rename of '.\csd2204w18\#sql-276c_2' to '.\csd2204w18\citymaster' (errno: 150 "Foreign key constraint is incorrectly formed")
+MariaDB [csd2204w18]> update citymaster
+    -> set cityname='vancouver',
+    -> where cityid='1234',
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where cityid='1234',' at line 3
+MariaDB [csd2204w18]> update citymaster set cityname='vancouver' where cityid='1234;
+    '> update citymaster set cityname='vancouver' where cityid='1234';
+    '>  ;
+    '>  ;
+    '> ;
+    '>   ;
+    '>  ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'vancouver' where cityid='1234';
+ ;
+ ;
+;
+  ;
+ '' at line 1
+MariaDB [csd2204w18]> update citymaster set cityname='vancouver,where cityid='2345';
+    '> update citymaster set cityname='vancouver' where cityid='2345';
+    '>  ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '2345';
+update citymaster set cityname='vancouver' where cityid='2345';
+ '' at line 1
+MariaDB [csd2204w18]> update citymaster set cityname='vancouver' where cityid='2345';
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [csd2204w18]> decs cities;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'decs cities' at line 1
+MariaDB [csd2204w18]> select *from citymaster;
++--------+-----------+
+| CityID | cityName  |
++--------+-----------+
+|   2345 | vancouver |
++--------+-----------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204w18]> delete from citymaster where cityid='2345';
+Query OK, 1 row affected (0.11 sec)
+
+MariaDB [csd2204w18]> select *from citymaster;
+Empty set (0.00 sec)
+
+MariaDB [csd2204w18]>
+MariaDB [csd2204w18]> exit
+Bye
+
+721368@128-IMAC20 c:\xampp
+# mysqldump -u root csd2204w18>day5.sql
+
+721368@128-IMAC20 c:\xampp
+#
